@@ -18,6 +18,6 @@ public class Item {
                 "id=" + id +
                 ", price=" + price +
                 ", name='" + name + '\'' +
-                '}' + "\n";
+                '}';
     }
 }
