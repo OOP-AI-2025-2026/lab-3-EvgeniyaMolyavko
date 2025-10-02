@@ -2,8 +2,8 @@ package org.example.task2;
 
 public class Order {
 
-    public long id;
-    public String customer;
+    private long id;
+    private String customer;
 
     public Order(long id, String customer) {
         this.id = id;

@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class Cart {
 
     public Item[] contents;
-    int index;
+    public int index;
 
-    Cart(Item[] _contents) {
+    public Cart(Item[] _contents) {
         this.contents = _contents;
     }
 
@@ -16,7 +16,7 @@ public class Cart {
         if (index == 0)
             return;
 
-        int foundItemIndex = findItemInArray(contents[itemIndex]);
+        int foundItemIndex = findItemInArray(itemIndex);
 
         if (foundItemIndex == -1)
             return;
@@ -27,43 +27,50 @@ public class Cart {
             return;
         }
 
+
         shiftArray(foundItemIndex);
     }
 
-    public void shiftArray(int itemIndex) {
-        for (int i = itemIndex; i < index - 1; i++) {
+    private void shiftArray(int itemIndex) {
+        for (int i = itemIndex; i < contents.length - 1; i++) {
             contents[i] = contents[i + 1];
         }
         contents[index-1] = null;
         index--;
     }
 
-    public int findItemInArray(Item item) {
+    private int findItemInArray(int id) {
         for (int i = 0; i < index; i++) {
-            if (contents[i].id == item.id) {
+            if (contents[i].id == id) {
                 return i;
             }
+
         }
 
         return -1;
     }
 
-    void add(Item item) {
-        if (isCartFull())
+    public void add(Item item) {
+        if (isCartFull()){
             return;
+        }
 
         contents[index] = item;
         index++;
     }
 
-    public boolean isCartFull() {
+    private boolean isCartFull() {
         return index == contents.length;
     }
 
     @Override
     public String toString() {
-        return "Cart{" +
-                "contents=" + Arrays.toString(contents) +
-                '}' + "\n";
+        String str = "";
+        for(int i=0; i<index; i++){
+            str += "Cart{" +
+                "contents=" + contents[i] + '}' + "\n";
+        }
+
+        return str;
     }
 }
